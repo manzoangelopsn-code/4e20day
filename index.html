@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4e20</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Monument Extended';
+    src: url('https://fonts.cdnfonts.com/s/49845/MonumentExtended-Ultrabold.woff') format('woff');
+    font-weight: 800;
+  }
+</style>
+<style>
+  :root {
+    --yellow: #F5D31A;
+    --green:  #2ECC40;
+    --pink:   #FF3D8F;
+    --purple: #6B4FBB;
+    --black:  #0A0A0A;
+    --white:  #FAFAFA;
+    --red:    #E8453C;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height: 100%; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 48px;
+    flex-shrink: 0;
+  }
+
+  .nav-logo { display: flex; align-items: center; gap: 14px; }
+
+  .nav-logo-text {
+    background: var(--yellow);
+    padding: 6px 16px 4px;
+    font-family: 'Monument Extended', 'Bebas Neue', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: var(--black);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .nav-icons { display: flex; align-items: center; gap: 0; }
+
+  .nav-icon {
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    border: 2px solid #1e1e1e;
+    margin-left: -2px;
+  }
+
+  .nav-icon.ic-g { background: var(--green); border-color: var(--green); }
+  .nav-icon.ic-p { background: var(--pink);  border-color: var(--pink); }
+  .nav-icon.ic-b { background: var(--black); border-color: #2a2a2a; }
+
+  /* ─── HERO ─── */
+  .hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 48px;
+    text-align: center;
+  }
+
+  .hero-label {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(10px, 1.3vw, 14px);
+    letter-spacing: 0.28em;
+    color: var(--white);
+    opacity: 0.35;
+    text-transform: uppercase;
+    margin-bottom: clamp(24px, 4vh, 52px);
+  }
+
+  .cd-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .cd-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cd-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(88px, 15vw, 196px);
+    line-height: 0.88;
+    letter-spacing: -3px;
+    display: inline-block;
+    transition: transform .12s cubic-bezier(.34,1.56,.64,1);
+  }
+
+  #cd-days  .cd-num { color: var(--yellow); }
+  #cd-hours .cd-num { color: var(--green);  }
+  #cd-mins  .cd-num { color: var(--pink);   }
+  #cd-secs  .cd-num { color: var(--white);  }
+
+  .cd-num.bump { transform: scale(1.07) translateY(-3px); }
+
+  .cd-sep {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 160px);
+    line-height: 0.88;
+    color: #222;
+    padding: 0 clamp(2px, 0.8vw, 12px);
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .cd-lbl {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(9px, 0.9vw, 12px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    opacity: 0.25;
+    margin-top: 14px;
+  }
+
+  .cd-block::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 100%;
+    margin-top: 6px;
+    border-radius: 2px;
+  }
+
+  #cd-days::after  { background: var(--yellow); }
+  #cd-hours::after { background: var(--green);  }
+  #cd-mins::after  { background: var(--pink);   }
+  #cd-secs::after  { background: #333; }
+
+  /* ─── BOARD ─── */
+  .board-section {
+    border-top: 1px solid #181818;
+    padding: clamp(36px, 5vh, 72px) 48px clamp(56px, 7vh, 96px);
+  }
+
+  .board-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+
+  .board-heading em { color: var(--yellow); font-style: normal; }
+
+  .post-form {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 0;
+    margin-bottom: 40px;
+    border: 2px solid #1e1e1e;
+    max-width: 780px;
+  }
+
+  .post-form input,
+  .post-form textarea {
+    background: transparent;
+    border: none;
+    border-right: 2px solid #1e1e1e;
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    padding: 18px 20px;
+    outline: none;
+    resize: none;
+    transition: background .2s;
+  }
+
+  .post-form input::placeholder,
+  .post-form textarea::placeholder { color: #2e2e2e; }
+
+  .post-form input:focus,
+  .post-form textarea:focus { background: #111; }
+
+  .post-form textarea { min-height: 58px; }
+
+  .post-btn {
+    background: var(--yellow);
+    color: var(--black);
+    border: none;
+    padding: 0 28px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+    white-space: nowrap;
+  }
+
+  .post-btn:hover  { background: var(--green); }
+  .post-btn:active { transform: scale(0.97); }
+  .post-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .comments-list {
+    display: flex;
+    flex-direction: column;
+    max-width: 780px;
+  }
+
+  .board-empty {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #222;
+    letter-spacing: 0.15em;
+    padding: 28px 0;
+  }
+
+  .comment-card {
+    display: grid;
+    grid-template-columns: 4px 1fr;
+    border-bottom: 1px solid #181818;
+    animation: fadeUp .3s ease;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(8px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .comment-card:nth-child(4n+1) .c-bar { background: var(--yellow); }
+  .comment-card:nth-child(4n+2) .c-bar { background: var(--green);  }
+  .comment-card:nth-child(4n+3) .c-bar { background: var(--pink);   }
+  .comment-card:nth-child(4n+0) .c-bar { background: var(--purple); }
+
+  .c-bar { width: 4px; }
+  .c-inner { padding: 18px 22px; }
+
+  .c-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 5px;
+  }
+
+  .c-text {
+    font-size: 14px;
+    color: var(--white);
+    opacity: 0.6;
+    line-height: 1.6;
+  }
+
+  .c-time {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #2a2a2a;
+    margin-top: 8px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 48px;
+    border-top: 1px solid #181818;
+    flex-shrink: 0;
+  }
+
+  .footer-links { display: flex; gap: 28px; }
+
+  .footer-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--white);
+    opacity: 0.25;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+    transition: opacity .2s;
+  }
+
+  .footer-links a:hover { opacity: 0.8; }
+
+  .footer-dots { display: flex; gap: 5px; align-items: center; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-y { background: var(--yellow); }
+  .dot-g { background: var(--green);  }
+  .dot-p { background: var(--pink);   }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    nav, footer, .board-section { padding-left: 24px; padding-right: 24px; }
+    .hero { padding: 28px 24px; }
+    .post-form { grid-template-columns: 1fr; }
+    .post-form input, .post-form textarea { border-right: none; border-bottom: 2px solid #1e1e1e; }
+    .post-btn { padding: 16px; width: 100%; }
+    .cd-sep { font-size: 56px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav>
+    <div class="nav-logo">
+      <span class="nav-logo-text">4e20</span>
+    </div>
+    <div class="nav-icons">
+      <div class="nav-icon ic-g">🌳</div>
+      <div class="nav-icon ic-p">🎵</div>
+      <div class="nav-icon ic-b">🎊</div>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <p class="hero-label">mancano ancora</p>
+    <div class="cd-row">
+      <div class="cd-block" id="cd-days">
+        <span class="cd-num">00</span>
+        <span class="cd-lbl">giorni</span>
+      </div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block" id="cd-hours">
+        <span class="cd-num">00</span>
+        <span class="cd-lbl">ore</span>
+      </div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block" id="cd-mins">
+        <span class="cd-num">00</span>
+        <span class="cd-lbl">minuti</span>
+      </div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block" id="cd-secs">
+        <span class="cd-num">00</span>
+        <span class="cd-lbl">secondi</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="board-section">
+    <h2 class="board-heading">lascia un <em>messaggio</em></h2>
+
+    <div class="post-form">
+      <input type="text" id="inp-name" placeholder="nome" maxlength="60">
+      <textarea id="inp-msg" placeholder="scrivi qualcosa..." maxlength="400"></textarea>
+      <button class="post-btn" id="submit-btn" onclick="postComment()">INVIA →</button>
+    </div>
+
+    <div class="comments-list" id="comments-list">
+      <div class="board-empty">// caricamento...</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">instagram</a>
+      <a href="#">tiktok</a>
+      <a href="http://www.4e20.it">www.4e20.it</a>
+    </div>
+    <div class="footer-dots">
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+      <div class="dot dot-p"></div>
+    </div>
+  </footer>
+
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+
+  // ─── FIREBASE CONFIG ───────────────────────────────────────
+  const firebaseConfig = {
+    apiKey: "AIzaSyB85A77jQFULLYQebOdLTIokaUzGUeX0RA",
+    authDomain: "e20countdown.firebaseapp.com",
+    projectId: "e20countdown",
+    storageBucket: "e20countdown.firebasestorage.app",
+    messagingSenderId: "1075858677013",
+    appId: "1:1075858677013:web:ff88cc66302f8c1b5c9d1c",
+    measurementId: "G-C2X4E5LTSX",
+    // Ho aggiunto io il databaseURL probabile. Se non funziona, lo sistemiamo!
+    databaseURL: "https://e20countdown-default-rtdb.europe-west1.firebasedatabase.app"
+  };
+
+  // Inizializza Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const commentsRef = ref(database, 'comments');
+
+  // ─── COUNTDOWN ─────────────────────────────────────────────
+  const TARGET = new Date('2026-05-16T00:00:00');
+  const pad = n => String(n).padStart(2, '0');
+  const prev = {};
+
+  function bump(el) {
+    el.classList.remove('bump');
+    void el.offsetWidth;
+    el.classList.add('bump');
+    setTimeout(() => el.classList.remove('bump'), 200);
+  }
+
+  function tick() {
+    const diff = TARGET - new Date();
+    if (diff <= 0) return;
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000) / 60000);
+    const secs  = Math.floor((diff % 60000) / 1000);
+
+    [['cd-days', days], ['cd-hours', hours], ['cd-mins', mins], ['cd-secs', secs]].forEach(([id, val]) => {
+      const str = pad(val);
+      if (prev[id] !== str) {
+        const el = document.querySelector(`#${id} .cd-num`);
+        el.textContent = str;
+        bump(el);
+        prev[id] = str;
+      }
+    });
+  }
+
+  tick();
+  setInterval(tick, 1000);
+
+  // ─── BACHECA ───────────────────────────────────────────────
+  function esc(s) {
+    return String(s)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;');
+  }
+
+  function formatDate(iso) {
+    const d = new Date(iso);
+    return d.toLocaleDateString('it-IT', { day:'2-digit', month:'short', year:'numeric' })
+         + ' · ' + d.toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
+  }
+
+  function renderComments(commentsObj) {
+    const list = document.getElementById('comments-list');
+    list.innerHTML = '';
+
+    const comments = commentsObj ? Object.values(commentsObj) : [];
+
+    if (!comments.length) {
+      list.innerHTML = '<div class="board-empty">// nessun messaggio ancora</div>';
+      return;
+    }
+
+    // Ordina per data (dal più recente al meno recente)
+    comments.sort((a, b) => new Date(a.time) - new Date(b.time)).reverse().forEach(c => {
+      const card = document.createElement('div');
+      card.className = 'comment-card';
+      card.innerHTML = `
+        <div class="c-bar"></div>
+        <div class="c-inner">
+          <div class="c-name">${esc(c.name)}</div>
+          <div class="c-text">${esc(c.text)}</div>
+          <div class="c-time">${formatDate(c.time)}</div>
+        </div>`;
+      list.appendChild(card);
+    });
+  }
+
+  // Ascolta le modifiche al database in tempo reale!
+  onValue(commentsRef, (snapshot) => {
+    const data = snapshot.val();
+    renderComments(data);
+  }, (error) => {
+    console.error("Firebase error: ", error);
+    document.getElementById('comments-list').innerHTML =
+      '<div class="board-empty">// errore nel caricamento database o in attesa della configurazione</div>';
+  });
+
+  // Salva i commenti sul Realtime Database
+  window.postComment = async function() {
+    const nameEl = document.getElementById('inp-name');
+    const msgEl  = document.getElementById('inp-msg');
+    const btn    = document.getElementById('submit-btn');
+
+    const name = nameEl.value.trim();
+    const text = msgEl.value.trim();
+
+    if (!name || !text) {
+      btn.style.background = 'var(--red)';
+      btn.textContent = 'compila tutto!';
+      setTimeout(() => { btn.style.background = ''; btn.textContent = 'INVIA →'; }, 1600);
+      return;
+    }
+
+    if (name.length > 60 || text.length > 400) {
+      btn.style.background = 'var(--red)';
+      btn.textContent = 'troppo lungo!';
+      setTimeout(() => { btn.style.background = ''; btn.textContent = 'INVIA →'; }, 1600);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = '...';
+
+    try {
+      const newComment = {
+        name: name.slice(0, 60),
+        text: text.slice(0, 400),
+        time: new Date().toISOString(),
+      };
+      
+      await push(commentsRef, newComment);
+
+      nameEl.value = '';
+      msgEl.value  = '';
+      btn.style.background = 'var(--green)';
+      btn.textContent = '✓';
+      setTimeout(() => { btn.style.background = ''; btn.textContent = 'INVIA →'; }, 1400);
+
+    } catch (error) {
+      console.error(error);
+      btn.style.background = 'var(--red)';
+      btn.textContent = 'errore!';
+      setTimeout(() => { btn.style.background = ''; btn.textContent = 'INVIA →'; }, 1600);
+    } finally {
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>
