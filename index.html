@@ -3,416 +3,860 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4e20</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+<title>4E20 DAY — 16 Maggio 2026 — Rende (CS)</title>
+<meta name="description" content="4E20 Day — Un festival a Km 0. 16 Maggio 2026, Parco Giorcelli, Quattromiglia, Rende (CS). Free Entry.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
 <style>
-  @font-face {
-    font-family: 'Monument Extended';
-    src: url('https://fonts.cdnfonts.com/s/49845/MonumentExtended-Ultrabold.woff') format('woff');
-    font-weight: 800;
-  }
-</style>
-<style>
+  /* ─── RESET & BASE ─── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
   :root {
-    --yellow: #F5D31A;
-    --green:  #2ECC40;
-    --pink:   #FF3D8F;
-    --purple: #6B4FBB;
+    --yellow: #FFCB05;
+    --blue:   #0071BC;
+    --green:  #00A651;
     --black:  #0A0A0A;
     --white:  #FAFAFA;
     --red:    #E8453C;
+    --border: 3px solid #0A0A0A;
+    --shadow: 5px 5px 0px #0A0A0A;
+    --shadow-lg: 8px 8px 0px #0A0A0A;
   }
 
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { height: 100%; }
-
   body {
-    background: var(--black);
-    color: var(--white);
+    background: var(--white);
+    color: var(--black);
     font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
   }
 
-  .page {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* ─── NAV ─── */
+  /* ─── NAVBAR ─── */
   nav {
+    background: var(--yellow);
+    border-bottom: var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 28px 48px;
-    flex-shrink: 0;
+    padding: 0 48px;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
-  .nav-logo { display: flex; align-items: center; gap: 14px; }
-
-  .nav-logo-text {
-    background: var(--yellow);
-    padding: 6px 16px 4px;
-    font-family: 'Monument Extended', 'Bebas Neue', sans-serif;
-    font-weight: 800;
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
+    letter-spacing: 2px;
     color: var(--black);
-    letter-spacing: -1px;
-    line-height: 1;
+    text-decoration: none;
   }
 
-  .nav-icons { display: flex; align-items: center; gap: 0; }
-
-  .nav-icon {
-    width: 42px; height: 42px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    border: 2px solid #1e1e1e;
-    margin-left: -2px;
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
   }
 
-  .nav-icon.ic-g { background: var(--green); border-color: var(--green); }
-  .nav-icon.ic-p { background: var(--pink);  border-color: var(--pink); }
-  .nav-icon.ic-b { background: var(--black); border-color: #2a2a2a; }
+  .nav-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--black);
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--black);
+    transition: width .2s ease;
+  }
+
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .nav-burger span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: var(--black);
+    border-radius: 2px;
+    transition: all .3s;
+  }
 
   /* ─── HERO ─── */
   .hero {
-    flex: 1;
+    background: var(--yellow);
+    padding: 64px 48px 72px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 32px 48px;
     text-align: center;
+    border-bottom: var(--border);
   }
 
   .hero-label {
     font-family: 'Space Mono', monospace;
-    font-size: clamp(10px, 1.3vw, 14px);
-    letter-spacing: 0.28em;
-    color: var(--white);
-    opacity: 0.35;
+    font-size: 12px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    margin-bottom: clamp(24px, 4vh, 52px);
+    color: var(--black);
+    opacity: 0.6;
+    margin-bottom: 16px;
   }
 
-  .cd-row {
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 16vw, 180px);
+    line-height: 0.9;
+    letter-spacing: -2px;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    padding: 6px 22px 4px;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 48px;
+  }
+
+  /* ─── COUNTDOWN ─── */
+  .countdown {
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: flex-end;
+    gap: 12px;
   }
 
   .cd-block {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 6px;
+  }
+
+  .cd-num-box {
+    background: var(--white);
+    border: var(--border);
+    box-shadow: var(--shadow);
+    width: clamp(72px, 11vw, 120px);
+    height: clamp(72px, 11vw, 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .cd-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(88px, 15vw, 196px);
-    line-height: 0.88;
-    letter-spacing: -3px;
-    display: inline-block;
+    font-size: clamp(44px, 7vw, 80px);
+    line-height: 1;
+    color: var(--black);
     transition: transform .12s cubic-bezier(.34,1.56,.64,1);
   }
 
-  #cd-days  .cd-num { color: var(--yellow); }
-  #cd-hours .cd-num { color: var(--green);  }
-  #cd-mins  .cd-num { color: var(--pink);   }
-  #cd-secs  .cd-num { color: var(--white);  }
-
-  .cd-num.bump { transform: scale(1.07) translateY(-3px); }
-
-  .cd-sep {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(72px, 12vw, 160px);
-    line-height: 0.88;
-    color: #222;
-    padding: 0 clamp(2px, 0.8vw, 12px);
-    user-select: none;
-    flex-shrink: 0;
-  }
+  .cd-num.bump { transform: scale(1.08); }
 
   .cd-lbl {
     font-family: 'Space Mono', monospace;
-    font-size: clamp(9px, 0.9vw, 12px);
-    letter-spacing: 0.2em;
+    font-size: clamp(9px, 1vw, 12px);
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--white);
-    opacity: 0.25;
-    margin-top: 14px;
+    color: var(--black);
+    opacity: 0.55;
   }
 
-  .cd-block::after {
-    content: '';
-    display: block;
-    height: 3px;
-    width: 100%;
-    margin-top: 6px;
-    border-radius: 2px;
-  }
-
-  #cd-days::after  { background: var(--yellow); }
-  #cd-hours::after { background: var(--green);  }
-  #cd-mins::after  { background: var(--pink);   }
-  #cd-secs::after  { background: #333; }
-
-  /* ─── BOARD ─── */
-  .board-section {
-    border-top: 1px solid #181818;
-    padding: clamp(36px, 5vh, 72px) 48px clamp(56px, 7vh, 96px);
-  }
-
-  .board-heading {
+  .cd-sep {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 5vw, 64px);
-    letter-spacing: 2px;
-    color: var(--white);
-    margin-bottom: 32px;
+    font-size: clamp(56px, 9vw, 100px);
+    line-height: 1;
+    color: var(--black);
+    opacity: 0.25;
+    margin-bottom: 24px;
+    user-select: none;
   }
 
-  .board-heading em { color: var(--yellow); font-style: normal; }
-
-  .post-form {
+  /* ─── SPLIT SECTION ─── */
+  .split {
     display: grid;
-    grid-template-columns: 200px 1fr auto;
-    gap: 0;
-    margin-bottom: 40px;
-    border: 2px solid #1e1e1e;
-    max-width: 780px;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: var(--border);
   }
 
-  .post-form input,
-  .post-form textarea {
-    background: transparent;
-    border: none;
-    border-right: 2px solid #1e1e1e;
+  .split-left {
+    background: var(--blue);
+    border-right: var(--border);
+    padding: 52px 48px;
+  }
+
+  .split-right {
+    background: var(--green);
+    padding: 52px 48px;
+  }
+
+  .split-date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 100px);
+    line-height: 0.9;
     color: var(--white);
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    padding: 18px 20px;
-    outline: none;
-    resize: none;
-    transition: background .2s;
+    margin-bottom: 16px;
   }
 
-  .post-form input::placeholder,
-  .post-form textarea::placeholder { color: #2e2e2e; }
-
-  .post-form input:focus,
-  .post-form textarea:focus { background: #111; }
-
-  .post-form textarea { min-height: 58px; }
-
-  .post-btn {
+  .split-badge {
+    display: inline-block;
     background: var(--yellow);
     color: var(--black);
-    border: none;
-    padding: 0 28px;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     letter-spacing: 2px;
-    cursor: pointer;
-    transition: background .2s, transform .1s;
-    white-space: nowrap;
+    padding: 4px 14px 2px;
+    border: var(--border);
+    box-shadow: 3px 3px 0 var(--black);
+    margin-bottom: 20px;
   }
 
-  .post-btn:hover  { background: var(--green); }
-  .post-btn:active { transform: scale(0.97); }
-  .post-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-  .comments-list {
-    display: flex;
-    flex-direction: column;
-    max-width: 780px;
-  }
-
-  .board-empty {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    color: #222;
-    letter-spacing: 0.15em;
-    padding: 28px 0;
-  }
-
-  .comment-card {
-    display: grid;
-    grid-template-columns: 4px 1fr;
-    border-bottom: 1px solid #181818;
-    animation: fadeUp .3s ease;
-  }
-
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(8px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-
-  .comment-card:nth-child(4n+1) .c-bar { background: var(--yellow); }
-  .comment-card:nth-child(4n+2) .c-bar { background: var(--green);  }
-  .comment-card:nth-child(4n+3) .c-bar { background: var(--pink);   }
-  .comment-card:nth-child(4n+0) .c-bar { background: var(--purple); }
-
-  .c-bar { width: 4px; }
-  .c-inner { padding: 18px 22px; }
-
-  .c-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 1px;
+  .split-info {
+    font-size: 15px;
     color: var(--white);
-    margin-bottom: 5px;
-  }
-
-  .c-text {
-    font-size: 14px;
-    color: var(--white);
-    opacity: 0.6;
+    opacity: 0.9;
     line-height: 1.6;
   }
 
-  .c-time {
+  .split-location {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5.5vw, 68px);
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .split-directions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    color: #2a2a2a;
-    margin-top: 8px;
-    letter-spacing: 0.08em;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: 2px solid rgba(255,255,255,0.5);
+    padding-bottom: 1px;
+    transition: border-color .2s;
+  }
+
+  .split-directions:hover { border-color: var(--white); }
+
+  /* ─── COMMUNITY SECTION ─── */
+  .community {
+    background: var(--black);
+    padding: 80px 48px;
+    text-align: center;
+    border-bottom: var(--border);
+  }
+
+  .community-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 7vw, 90px);
+    line-height: 1;
+    color: var(--yellow);
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+
+  .community-text {
+    font-size: clamp(15px, 1.5vw, 18px);
+    color: var(--white);
+    opacity: 0.75;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ─── FESTIVAL GRID ─── */
+  .festival-section {
+    padding: 0;
+    border-bottom: var(--border);
+  }
+
+  .festival-header {
+    padding: 32px 48px;
+    border-bottom: var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .festival-header-bar {
+    width: 5px;
+    height: 28px;
+    background: var(--black);
+  }
+
+  .festival-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 3px;
+    color: var(--black);
+  }
+
+  .festival-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .activity-card {
+    border: var(--border);
+    border-top: none;
+    border-left: none;
+    padding: 36px 36px 0;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .activity-card:nth-child(odd) { border-left: none; }
+  .activity-card:nth-child(even) { border-right: none; }
+  .activity-card:nth-child(n+3) { border-bottom: none; }
+
+  .activity-card.card-balli  { background: #F0EDE8; }
+  .activity-card.card-bevi   { background: #1A3A6B; }
+  .activity-card.card-chilli { background: #1A5C35; }
+  .activity-card.card-splendi { background: #0A2A50; }
+
+  .activity-card.card-balli .activity-label { color: var(--black); }
+  .activity-card.card-balli .activity-desc  { color: var(--black); opacity: 0.6; }
+
+  .activity-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 3px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .activity-desc {
+    font-size: 13px;
+    color: var(--white);
+    opacity: 0.7;
+    line-height: 1.5;
+    max-width: 200px;
+  }
+
+  .activity-img {
+    margin-top: auto;
+    align-self: center;
+    width: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    display: block;
+    /* placeholder style */
+  }
+
+  .activity-img-placeholder {
+    margin-top: auto;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.3;
+  }
+
+  .activity-img-placeholder svg {
+    width: 64px;
+    height: 64px;
+    fill: var(--white);
+  }
+
+  /* ─── LOGO SECTION ─── */
+  .logo-section {
+    background: var(--white);
+    border-bottom: var(--border);
+    padding: 80px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.5;
+    margin-bottom: 32px;
+  }
+
+  .logo-display {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 32px;
+    border: var(--border);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .logo-block-yellow {
+    background: var(--yellow);
+    padding: 24px 36px;
+    border-right: var(--border);
+  }
+
+  .logo-block-black {
+    background: var(--black);
+    padding: 24px 36px;
+  }
+
+  .logo-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 120px);
+    line-height: 1;
+    letter-spacing: -4px;
+  }
+
+  .logo-block-yellow .logo-num { color: var(--black); }
+  .logo-block-black .logo-num  { color: var(--yellow); }
+
+  .logo-claim {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.6;
+  }
+
+  /* ─── PATROCINIO ─── */
+  .patrocinio-section {
+    background: #F5F5F5;
+    border-bottom: var(--border);
+    padding: 64px 48px;
+  }
+
+  .patrocinio-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.5;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .patrocinio-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    flex-wrap: wrap;
+  }
+
+  .patrocinio-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .patrocinio-logo-box {
+    width: 120px;
+    height: 120px;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .patrocinio-logo-box img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+  }
+
+  /* Placeholder stile per loghi mancanti */
+  .logo-placeholder-comune {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+  }
+
+  .logo-placeholder-comune .stemma {
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .logo-placeholder-wisea {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--black);
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .patrocinio-caption {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.7;
+    text-align: center;
+  }
+
+  .patrocinio-divider {
+    width: 1px;
+    height: 100px;
+    background: #ccc;
   }
 
   /* ─── FOOTER ─── */
   footer {
+    background: var(--yellow);
+    border-top: var(--border);
+    padding: 32px 48px;
+  }
+
+  .footer-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 22px 48px;
-    border-top: 1px solid #181818;
-    flex-shrink: 0;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid rgba(0,0,0,0.15);
   }
 
-  .footer-links { display: flex; gap: 28px; }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: var(--black);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
 
   .footer-links a {
     font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    color: var(--white);
-    opacity: 0.25;
-    text-decoration: none;
+    font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: lowercase;
+    text-decoration: none;
+    color: var(--black);
+    opacity: 0.7;
     transition: opacity .2s;
   }
 
-  .footer-links a:hover { opacity: 0.8; }
+  .footer-links a:hover { opacity: 1; }
 
-  .footer-dots { display: flex; gap: 5px; align-items: center; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; }
-  .dot-y { background: var(--yellow); }
-  .dot-g { background: var(--green);  }
-  .dot-p { background: var(--pink);   }
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--black);
+    opacity: 0.5;
+  }
+
+  .footer-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--black);
+  }
+
+  .dot-y { background: var(--black); }
+  .dot-b { background: var(--blue); }
+  .dot-g { background: var(--green); }
 
   /* ─── RESPONSIVE ─── */
-  @media (max-width: 640px) {
-    nav, footer, .board-section { padding-left: 24px; padding-right: 24px; }
-    .hero { padding: 28px 24px; }
-    .post-form { grid-template-columns: 1fr; }
-    .post-form input, .post-form textarea { border-right: none; border-bottom: 2px solid #1e1e1e; }
-    .post-btn { padding: 16px; width: 100%; }
-    .cd-sep { font-size: 56px; }
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--yellow);
+      border-bottom: var(--border);
+      padding: 24px;
+      gap: 20px;
+    }
+    .nav-burger { display: flex; }
+
+    .hero { padding: 48px 24px 56px; }
+    .countdown { gap: 6px; }
+    .cd-sep { font-size: 40px; }
+
+    .split { grid-template-columns: 1fr; }
+    .split-left { border-right: none; border-bottom: var(--border); }
+    .split-left, .split-right { padding: 40px 24px; }
+
+    .community { padding: 56px 24px; }
+
+    .festival-header { padding: 24px; }
+    .festival-grid { grid-template-columns: 1fr; }
+    .activity-card { min-height: 280px; border-right: none; border-left: none; border-bottom: var(--border); }
+    .activity-card:last-child { border-bottom: none; }
+
+    .logo-section { padding: 56px 24px; }
+    .logo-block-yellow, .logo-block-black { padding: 20px 24px; }
+
+    .patrocinio-section { padding: 48px 24px; }
+    .patrocinio-grid { gap: 40px; }
+    .patrocinio-divider { display: none; }
+
+    footer { padding: 28px 24px; }
+    .footer-top { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-bottom { flex-direction: column; gap: 12px; }
   }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <nav>
-    <div class="nav-logo">
-      <span class="nav-logo-text">4e20</span>
-    </div>
-    <div class="nav-icons">
-      <div class="nav-icon ic-g">🌳</div>
-      <div class="nav-icon ic-p">🎵</div>
-      <div class="nav-icon ic-b">🎊</div>
-    </div>
-  </nav>
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">4E20 DAY</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#activities">Activities</a></li>
+    <li><a href="#event-info">Event Info</a></li>
+    <li><a href="#partners">Partners</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <div class="hero">
-    <p class="hero-label">mancano ancora</p>
-    <div class="cd-row">
-      <div class="cd-block" id="cd-days">
-        <span class="cd-num">00</span>
-        <span class="cd-lbl">giorni</span>
+<!-- ─── HERO ─── -->
+<section class="hero" id="about">
+  <p class="hero-label">Un festival a Km 0 · 4E20 Day</p>
+  <h1 class="hero-title">4E20 DAY</h1>
+  <div class="hero-badge">FREE ENTRY</div>
+
+  <div class="countdown" id="countdown">
+    <div class="cd-block">
+      <div class="cd-num-box"><span class="cd-num" id="cd-days">00</span></div>
+      <span class="cd-lbl">Giorni</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-block">
+      <div class="cd-num-box"><span class="cd-num" id="cd-hours">00</span></div>
+      <span class="cd-lbl">Ore</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-block">
+      <div class="cd-num-box"><span class="cd-num" id="cd-mins">00</span></div>
+      <span class="cd-lbl">Min</span>
+    </div>
+    <span class="cd-sep">:</span>
+    <div class="cd-block">
+      <div class="cd-num-box"><span class="cd-num" id="cd-secs">00</span></div>
+      <span class="cd-lbl">Sec</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SPLIT DATE / LOCATION ─── -->
+<section class="split" id="event-info">
+  <div class="split-left">
+    <div class="split-date">16<br>MAGGIO</div>
+    <div class="split-badge">FREE ENTRY</div>
+    <p class="split-info">
+      From 16:00 to 1:30.<br>
+      11 hours of non-stop energy.
+    </p>
+  </div>
+  <div class="split-right">
+    <div class="split-location">Parco<br>Giorcelli,<br>Quattromiglia,<br>Rende (CS)</div>
+    <a href="https://maps.google.com/?q=Parco+Giorcelli+Quattromiglia+Rende" target="_blank" class="split-directions">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      Get Directions
+    </a>
+  </div>
+</section>
+
+<!-- ─── COMMUNITY ─── -->
+<section class="community">
+  <h2 class="community-title">FROM 4MILES<br>FOR 4MILES</h2>
+  <p class="community-text">
+    Da Quattromiglia, per Quattromiglia. Un evento pensato per valorizzare il nostro territorio, portando energia, musica e cultura direttamente nel cuore della nostra comunità.
+  </p>
+</section>
+
+<!-- ─── FESTIVAL GRID ─── -->
+<section class="festival-section" id="activities">
+  <div class="festival-header">
+    <div class="festival-header-bar"></div>
+    <h2>IL FESTIVAL</h2>
+  </div>
+
+  <div class="festival-grid">
+    <div class="activity-card card-balli">
+      <div class="activity-label">BALLI</div>
+      <div class="activity-desc">Danza, movimento e ritmo. L'energia del palco è tua.</div>
+      <img class="activity-img" src="img-balli.png" alt="Balli" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="activity-img-placeholder" style="display:none">
+        <svg viewBox="0 0 24 24"><path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1-2.1-.94-2.1-2.1.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
       </div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block" id="cd-hours">
-        <span class="cd-num">00</span>
-        <span class="cd-lbl">ore</span>
+    </div>
+
+    <div class="activity-card card-bevi">
+      <div class="activity-label">BEVI</div>
+      <div class="activity-desc">Bar e refreshment zone. Tutto il giorno, senza sosta.</div>
+      <img class="activity-img" src="img-bevi.png" alt="Bevi" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="activity-img-placeholder" style="display:none">
+        <svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3z"/></svg>
       </div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block" id="cd-mins">
-        <span class="cd-num">00</span>
-        <span class="cd-lbl">minuti</span>
+    </div>
+
+    <div class="activity-card card-chilli">
+      <div class="activity-label">CHILLI</div>
+      <div class="activity-desc">Street food piccante e sapori del territorio.</div>
+      <img class="activity-img" src="img-chilli.png" alt="Chilli" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="activity-img-placeholder" style="display:none">
+        <svg viewBox="0 0 24 24"><path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1z"/></svg>
       </div>
-      <span class="cd-sep">:</span>
-      <div class="cd-block" id="cd-secs">
-        <span class="cd-num">00</span>
-        <span class="cd-lbl">secondi</span>
+    </div>
+
+    <div class="activity-card card-splendi">
+      <div class="activity-label">SPLENDI</div>
+      <div class="activity-desc">Performance artistiche, visual e molto altro.</div>
+      <img class="activity-img" src="img-splendi.png" alt="Splendi" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="activity-img-placeholder" style="display:none">
+        <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm1-11h-2v3H8v2h3v3h2v-3h3v-2h-3z"/></svg>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="board-section">
-    <h2 class="board-heading">lascia un <em>messaggio</em></h2>
+<!-- ─── LOGO SECTION ─── -->
+<section class="logo-section">
+  <p class="logo-eyebrow">Il simbolo del festival</p>
 
-    <div class="post-form">
-      <input type="text" id="inp-name" placeholder="nome" maxlength="60">
-      <textarea id="inp-msg" placeholder="scrivi qualcosa..." maxlength="400"></textarea>
-      <button class="post-btn" id="submit-btn" onclick="postComment()">INVIA →</button>
+  <div class="logo-display">
+    <div class="logo-block-yellow">
+      <div class="logo-num">4E</div>
     </div>
-
-    <div class="comments-list" id="comments-list">
-      <div class="board-empty">// caricamento...</div>
+    <div class="logo-block-black">
+      <div class="logo-num">20</div>
     </div>
   </div>
 
-  <footer>
-    <div class="footer-links">
-      <a href="#">instagram</a>
-      <a href="#">tiktok</a>
-      <a href="http://www.4e20.it">www.4e20.it</a>
+  <p class="logo-claim">Un festival a Km 0 · Quattromiglia, Rende</p>
+</section>
+
+<!-- ─── PATROCINIO & PARTNER ─── -->
+<section class="patrocinio-section" id="partners">
+  <p class="patrocinio-title">Con il patrocinio di &amp; partner</p>
+
+  <div class="patrocinio-grid">
+
+    <div class="patrocinio-item">
+      <div class="patrocinio-logo-box" id="logo-comune">
+        <!-- Sostituisci con: <img src="logo-comune-rende.png" alt="Comune di Rende"> -->
+        <div class="logo-placeholder-comune">
+          <span class="stemma">🏛️</span>
+        </div>
+      </div>
+      <div class="patrocinio-caption">Comune di Rende</div>
     </div>
+
+    <div class="patrocinio-divider"></div>
+
+    <div class="patrocinio-item">
+      <div class="patrocinio-logo-box" id="logo-wisea">
+        <!-- Sostituisci con: <img src="logo-wisea.png" alt="Wisea Eventi"> -->
+        <div class="logo-placeholder-wisea">WISEA<br>EVENTI</div>
+      </div>
+      <div class="patrocinio-caption">Wisea Eventi</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">4E20 DAY</div>
+    <ul class="footer-links">
+      <li><a href="#">privacy policy</a></li>
+      <li><a href="#">terms of service</a></li>
+      <li><a href="#">contact us</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 4E20 Day. All Rights Reserved.</p>
     <div class="footer-dots">
       <div class="dot dot-y"></div>
+      <div class="dot dot-b"></div>
       <div class="dot dot-g"></div>
-      <div class="dot dot-p"></div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-</div>
+<script>
+  // ─── MOBILE MENU ─────────────────────────────────────────
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
-
-  // ─── FIREBASE CONFIG ───────────────────────────────────────
-  const firebaseConfig = {
-    apiKey: "AIzaSyB85A77jQFULLYQebOdLTIokaUzGUeX0RA",
-    authDomain: "e20countdown.firebaseapp.com",
-    projectId: "e20countdown",
-    storageBucket: "e20countdown.firebasestorage.app",
-    messagingSenderId: "1075858677013",
-    appId: "1:1075858677013:web:ff88cc66302f8c1b5c9d1c",
-    measurementId: "G-C2X4E5LTSX",
-    // Ho aggiunto io il databaseURL probabile. Se non funziona, lo sistemiamo!
-    databaseURL: "https://e20countdown-default-rtdb.europe-west1.firebasedatabase.app"
-  };
-
-  // Inizializza Firebase
-  const app = initializeApp(firebaseConfig);
-  const database = getDatabase(app);
-  const commentsRef = ref(database, 'comments');
-
-  // ─── COUNTDOWN ─────────────────────────────────────────────
-  const TARGET = new Date('2026-05-16T00:00:00');
+  // ─── COUNTDOWN ───────────────────────────────────────────
+  const TARGET = new Date('2026-05-16T16:00:00');
   const pad = n => String(n).padStart(2, '0');
   const prev = {};
 
@@ -425,7 +869,11 @@
 
   function tick() {
     const diff = TARGET - new Date();
-    if (diff <= 0) return;
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML =
+        '<p style="font-family:\'Bebas Neue\',sans-serif; font-size:48px; letter-spacing:2px;">🎉 È OGGI!</p>';
+      return;
+    }
     const days  = Math.floor(diff / 86400000);
     const hours = Math.floor((diff % 86400000) / 3600000);
     const mins  = Math.floor((diff % 3600000) / 60000);
@@ -434,7 +882,7 @@
     [['cd-days', days], ['cd-hours', hours], ['cd-mins', mins], ['cd-secs', secs]].forEach(([id, val]) => {
       const str = pad(val);
       if (prev[id] !== str) {
-        const el = document.querySelector(`#${id} .cd-num`);
+        const el = document.getElementById(id);
         el.textContent = str;
         bump(el);
         prev[id] = str;
@@ -444,107 +892,6 @@
 
   tick();
   setInterval(tick, 1000);
-
-  // ─── BACHECA ───────────────────────────────────────────────
-  function esc(s) {
-    return String(s)
-      .replace(/&/g,'&amp;')
-      .replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;');
-  }
-
-  function formatDate(iso) {
-    const d = new Date(iso);
-    return d.toLocaleDateString('it-IT', { day:'2-digit', month:'short', year:'numeric' })
-         + ' · ' + d.toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
-  }
-
-  function renderComments(commentsObj) {
-    const list = document.getElementById('comments-list');
-    list.innerHTML = '';
-
-    const comments = commentsObj ? Object.values(commentsObj) : [];
-
-    if (!comments.length) {
-      list.innerHTML = '<div class="board-empty">// nessun messaggio ancora</div>';
-      return;
-    }
-
-    // Ordina per data (dal più recente al meno recente)
-    comments.sort((a, b) => new Date(a.time) - new Date(b.time)).reverse().forEach(c => {
-      const card = document.createElement('div');
-      card.className = 'comment-card';
-      card.innerHTML = `
-        <div class="c-bar"></div>
-        <div class="c-inner">
-          <div class="c-name">${esc(c.name)}</div>
-          <div class="c-text">${esc(c.text)}</div>
-          <div class="c-time">${formatDate(c.time)}</div>
-        </div>`;
-      list.appendChild(card);
-    });
-  }
-
-  // Ascolta le modifiche al database in tempo reale!
-  onValue(commentsRef, (snapshot) => {
-    const data = snapshot.val();
-    renderComments(data);
-  }, (error) => {
-    console.error("Firebase error: ", error);
-    document.getElementById('comments-list').innerHTML =
-      '<div class="board-empty">// errore nel caricamento database o in attesa della configurazione</div>';
-  });
-
-  // Salva i commenti sul Realtime Database
-  window.postComment = async function() {
-    const nameEl = document.getElementById('inp-name');
-    const msgEl  = document.getElementById('inp-msg');
-    const btn    = document.getElementById('submit-btn');
-
-    const name = nameEl.value.trim();
-    const text = msgEl.value.trim();
-
-    if (!name || !text) {
-      btn.style.background = 'var(--red)';
-      btn.textContent = 'compila tutto!';
-      setTimeout(() => { btn.style.background = ''; btn.textContent = 'INVIA →'; }, 1600);
-      return;
-    }
-
-    if (name.length > 60 || text.length > 400) {
-      btn.style.background = 'var(--red)';
-      btn.textContent = 'troppo lungo!';
-      setTimeout(() => { btn.style.background = ''; btn.textContent = 'INVIA →'; }, 1600);
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = '...';
-
-    try {
-      const newComment = {
-        name: name.slice(0, 60),
-        text: text.slice(0, 400),
-        time: new Date().toISOString(),
-      };
-      
-      await push(commentsRef, newComment);
-
-      nameEl.value = '';
-      msgEl.value  = '';
-      btn.style.background = 'var(--green)';
-      btn.textContent = '✓';
-      setTimeout(() => { btn.style.background = ''; btn.textContent = 'INVIA →'; }, 1400);
-
-    } catch (error) {
-      console.error(error);
-      btn.style.background = 'var(--red)';
-      btn.textContent = 'errore!';
-      setTimeout(() => { btn.style.background = ''; btn.textContent = 'INVIA →'; }, 1600);
-    } finally {
-      btn.disabled = false;
-    }
-  }
 </script>
 </body>
 </html>
