@@ -462,6 +462,13 @@
     opacity: 0.6;
   }
 
+  .logo-real {
+    width: clamp(200px, 40vw, 400px);
+    height: auto;
+    mix-blend-mode: multiply; /* rimuove lo sfondo bianco del PNG */
+    margin-bottom: 16px;
+  }
+
   /* ─── PATROCINIO ─── */
   .patrocinio-section {
     background: #F5F5F5;
@@ -820,17 +827,12 @@
 
 <!-- ─── LOGO SECTION ─── -->
 <section class="logo-section">
-  <p class="logo-eyebrow">Il simbolo del festival</p>
-
-  <div class="logo-display">
-    <div class="logo-block-yellow">
-      <div class="logo-num">4E</div>
-    </div>
-    <div class="logo-block-black">
-      <div class="logo-num">20</div>
-    </div>
-  </div>
-
+  <p class="logo-eyebrow">da un'idea di...</p>
+  <img
+    src="logo-4e20.png"
+    alt="4e20"
+    class="logo-real"
+  >
   <p class="logo-claim">Un festival a Km 0 · Quattromiglia, Rende</p>
 </section>
 
