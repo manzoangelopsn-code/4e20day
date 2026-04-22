@@ -465,6 +465,65 @@
     fill: var(--white);
   }
 
+  /* ─── MAPPA EVENTO ─── */
+  .map-section {
+    border-bottom: var(--border);
+    background: var(--white);
+  }
+
+  .map-wip-badge {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--black);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    padding: 4px 14px 2px;
+    border: var(--border);
+    box-shadow: 3px 3px 0 var(--black);
+    margin-left: auto;
+    animation: blink-badge 2s step-end infinite;
+  }
+
+  .map-wrapper {
+    padding: 0 0 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .park-map {
+    width: 100%;
+    max-width: 960px;
+    height: auto;
+    display: block;
+  }
+
+  .map-worker {
+    animation: worker-idle 2.4s ease-in-out infinite;
+  }
+
+  @keyframes worker-idle {
+    0%, 100% { transform: translate(390px, 215px); }
+    50%       { transform: translate(390px, 219px); }
+  }
+
+  .map-coming-soon {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.35;
+    text-align: center;
+    padding: 0 24px;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .park-map { max-width: 100%; }
+  }
+
   /* ─── LINEUP TEASER ─── */
   .lineup-teaser {
     background: var(--black);
@@ -884,6 +943,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#activities">Activities</a></li>
     <li><a href="#event-info">Event Info</a></li>
+    <li><a href="#mappa">Mappa</a></li>
     <li><a href="#partners">Partners</a></li>
   </ul>
   <button class="nav-burger" id="burger" aria-label="Menu" onclick="toggleMenu()">
@@ -1017,6 +1077,128 @@
         </svg>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ─── MAPPA EVENTO ─── -->
+<section class="map-section" id="mappa">
+  <div class="festival-header">
+    <div class="festival-header-bar"></div>
+    <h2>MAPPA EVENTO</h2>
+    <div class="map-wip-badge">CANTIERE IN CORSO</div>
+  </div>
+
+  <div class="map-wrapper">
+    <svg class="park-map" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Park ground -->
+      <rect x="0" y="0" width="800" height="500" fill="#1b3d0d"/>
+      <rect x="20" y="20" width="760" height="460" rx="6" fill="#2a5c14"/>
+
+      <!-- Paths -->
+      <rect x="20" y="228" width="760" height="44" fill="#b8975a" opacity="0.5"/>
+      <rect x="368" y="20" width="64" height="460" fill="#b8975a" opacity="0.5"/>
+
+      <!-- Area 1 top-center -->
+      <rect x="240" y="40" width="320" height="148" rx="4"
+            fill="#FFCB05" fill-opacity="0.1"
+            stroke="#FFCB05" stroke-width="3"
+            stroke-dasharray="940" stroke-dashoffset="940">
+        <animate attributeName="stroke-dashoffset" from="940" to="0" dur="2.5s" begin="0.3s" fill="freeze"/>
+      </rect>
+
+      <!-- Area 2 top-left -->
+      <rect x="40" y="40" width="164" height="164" rx="4"
+            fill="#0071BC" fill-opacity="0.14"
+            stroke="#0071BC" stroke-width="3"
+            stroke-dasharray="656" stroke-dashoffset="656">
+        <animate attributeName="stroke-dashoffset" from="656" to="0" dur="2s" begin="1.2s" fill="freeze"/>
+      </rect>
+
+      <!-- Area 3 bottom-left -->
+      <rect x="40" y="272" width="164" height="188" rx="4"
+            fill="#00A651" fill-opacity="0.14"
+            stroke="#00A651" stroke-width="3"
+            stroke-dasharray="704" stroke-dashoffset="704">
+        <animate attributeName="stroke-dashoffset" from="704" to="0" dur="2s" begin="2s" fill="freeze"/>
+      </rect>
+
+      <!-- Area 4 bottom-center -->
+      <rect x="240" y="272" width="320" height="188" rx="4"
+            fill="#E8453C" fill-opacity="0.12"
+            stroke="#E8453C" stroke-width="3"
+            stroke-dasharray="1016" stroke-dashoffset="1016">
+        <animate attributeName="stroke-dashoffset" from="1016" to="0" dur="2.5s" begin="1.8s" fill="freeze"/>
+      </rect>
+
+      <!-- Area 5 top-right -->
+      <rect x="596" y="40" width="164" height="164" rx="4"
+            fill="#E84D8A" fill-opacity="0.14"
+            stroke="#E84D8A" stroke-width="3"
+            stroke-dasharray="656" stroke-dashoffset="656">
+        <animate attributeName="stroke-dashoffset" from="656" to="0" dur="2s" begin="2.5s" fill="freeze"/>
+      </rect>
+
+      <!-- Area 6 bottom-right -->
+      <rect x="596" y="272" width="164" height="188" rx="4"
+            fill="#FAFAFA" fill-opacity="0.08"
+            stroke="#FAFAFA" stroke-width="3"
+            stroke-dasharray="704" stroke-dashoffset="704">
+        <animate attributeName="stroke-dashoffset" from="704" to="0" dur="2s" begin="3s" fill="freeze"/>
+      </rect>
+
+      <!-- Ingresso -->
+      <rect x="332" y="452" width="136" height="28" rx="3"
+            fill="#FFCB05" fill-opacity="0.2"
+            stroke="#FFCB05" stroke-width="2"
+            stroke-dasharray="328" stroke-dashoffset="328">
+        <animate attributeName="stroke-dashoffset" from="328" to="0" dur="1s" begin="3.5s" fill="freeze"/>
+      </rect>
+
+      <!-- Trees -->
+      <circle cx="218" cy="75"  r="13" fill="#1a5c09" stroke="#0d3504" stroke-width="2"/>
+      <circle cx="196" cy="118" r="9"  fill="#1a5c09" stroke="#0d3504" stroke-width="2"/>
+      <circle cx="214" cy="156" r="10" fill="#1a5c09" stroke="#0d3504" stroke-width="2"/>
+      <circle cx="582" cy="75"  r="13" fill="#1a5c09" stroke="#0d3504" stroke-width="2"/>
+      <circle cx="604" cy="118" r="9"  fill="#1a5c09" stroke="#0d3504" stroke-width="2"/>
+      <circle cx="586" cy="156" r="10" fill="#1a5c09" stroke="#0d3504" stroke-width="2"/>
+      <circle cx="218" cy="440" r="11" fill="#1a5c09" stroke="#0d3504" stroke-width="2"/>
+      <circle cx="582" cy="440" r="11" fill="#1a5c09" stroke="#0d3504" stroke-width="2"/>
+      <circle cx="238" cy="248" r="8"  fill="#1a5c09" stroke="#0d3504" stroke-width="2"/>
+      <circle cx="562" cy="248" r="8"  fill="#1a5c09" stroke="#0d3504" stroke-width="2"/>
+
+      <!-- Construction cones -->
+      <g transform="translate(232,210)">
+        <polygon points="0,-14 9,9 -9,9" fill="#E8453C" stroke="#0A0A0A" stroke-width="1.5"/>
+        <rect x="-11" y="9" width="22" height="5" rx="1" fill="#FAFAFA" stroke="#0A0A0A" stroke-width="1"/>
+        <line x1="-7" y1="-2" x2="7" y2="-2" stroke="#FAFAFA" stroke-width="2"/>
+      </g>
+      <g transform="translate(568,210)">
+        <polygon points="0,-14 9,9 -9,9" fill="#E8453C" stroke="#0A0A0A" stroke-width="1.5"/>
+        <rect x="-11" y="9" width="22" height="5" rx="1" fill="#FAFAFA" stroke="#0A0A0A" stroke-width="1"/>
+        <line x1="-7" y1="-2" x2="7" y2="-2" stroke="#FAFAFA" stroke-width="2"/>
+      </g>
+      <g transform="translate(400,228)">
+        <polygon points="0,-14 9,9 -9,9" fill="#E8453C" stroke="#0A0A0A" stroke-width="1.5"/>
+        <rect x="-11" y="9" width="22" height="5" rx="1" fill="#FAFAFA" stroke="#0A0A0A" stroke-width="1"/>
+        <line x1="-7" y1="-2" x2="7" y2="-2" stroke="#FAFAFA" stroke-width="2"/>
+      </g>
+
+      <!-- Worker fisso al centro -->
+      <g class="map-worker" transform="translate(390, 215)">
+        <ellipse cx="0" cy="-15" rx="11" ry="7" fill="#FFCB05" stroke="#0A0A0A" stroke-width="1.5"/>
+        <circle cx="0" cy="-5" r="9" fill="#f5c5a3" stroke="#0A0A0A" stroke-width="1.5"/>
+        <rect x="-9" y="5" width="18" height="20" rx="3" fill="#E8453C" stroke="#0A0A0A" stroke-width="1.5"/>
+        <!-- Braccia aperte (in attesa) -->
+        <line x1="-9"  y1="10" x2="-22" y2="18" stroke="#f5c5a3" stroke-width="4" stroke-linecap="round"/>
+        <line x1="9"   y1="10" x2="22"  y2="18" stroke="#f5c5a3" stroke-width="4" stroke-linecap="round"/>
+        <!-- Gambe -->
+        <line x1="-4" y1="25" x2="-6" y2="40" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round"/>
+        <line x1="4"  y1="25" x2="6"  y2="40" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round"/>
+      </g>
+
+    </svg>
+    <p class="map-coming-soon">Mappa in costruzione · disponibile presto</p>
   </div>
 </section>
 
