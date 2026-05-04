@@ -908,6 +908,140 @@
   .dot-b { background: var(--blue); }
   .dot-g { background: var(--green); }
 
+  /* ─── REGOLAMENTO ─── */
+  .rules-section {
+    background: var(--white);
+    border-bottom: var(--border);
+  }
+
+  .rules-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 48px 64px;
+  }
+
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 32px;
+  }
+
+  .rules-box {
+    border: var(--border);
+    box-shadow: 6px 6px 0px var(--black);
+    padding: 32px 32px 40px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rules-box:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--black);
+  }
+
+  .box-puoi { background: var(--green); color: var(--white); }
+  .box-non-puoi { background: var(--red); color: var(--white); }
+
+  .rules-box-header {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    padding-bottom: 16px;
+  }
+
+  .rules-box-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .rules-box-list li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .rules-box-list li::before {
+    content: '—';
+    font-weight: bold;
+    opacity: 0.8;
+  }
+
+  .entrance-box {
+    border: var(--border);
+    box-shadow: 6px 6px 0px var(--black);
+    padding: 32px 32px 40px;
+    background: var(--yellow);
+    color: var(--black);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 32px;
+  }
+
+  .entrance-box:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--black);
+  }
+
+  .services-box {
+    border: var(--border);
+    box-shadow: 6px 6px 0px var(--black);
+    padding: 32px 32px 40px;
+    background: var(--blue);
+    color: var(--white);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 32px;
+  }
+
+  .services-box:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px var(--black);
+  }
+
+  .services-intro {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .services-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .services-list li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .services-list li::before {
+    content: '→';
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    color: var(--yellow);
+  }
+
+  .services-list strong {
+    color: var(--yellow);
+  }
+
   /* ─── FAQ ─── */
   .faq-section {
     background: var(--white);
@@ -1001,6 +1135,12 @@
     .patrocinio-grid { gap: 40px; }
     .patrocinio-divider { display: none; }
 
+    .rules-container { padding: 0 24px 48px; }
+    .rules-grid { grid-template-columns: 1fr; gap: 24px; }
+    .rules-box { padding: 24px 24px 32px; }
+    .entrance-box { padding: 24px 24px 32px; margin-bottom: 24px; }
+    .services-box { padding: 24px 24px 32px; }
+
     .faq-list { padding: 0 24px 48px; }
 
     footer { padding: 28px 24px; }
@@ -1024,6 +1164,9 @@
     <li><a href="#event-info">Info Evento</a></li>
     <li><a href="#lineup">Line Up</a></li>
     <li><a href="#mappa">Mappa</a></li>
+    <li><a href="#ingresso">Ingresso</a></li>
+    <li><a href="#regolamento">Regolamento</a></li>
+    <li><a href="#servizi">Servizi</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <button class="nav-burger" id="burger" aria-label="Menu" onclick="toggleMenu()">
@@ -1295,6 +1438,86 @@
 
     </svg>
     <p class="map-coming-soon">Mappa in costruzione · disponibile presto</p>
+  </div>
+</section>
+
+<!-- ─── INGRESSO ─── -->
+<section class="rules-section" id="ingresso">
+  <div class="festival-header">
+    <div class="festival-header-bar" style="background: var(--yellow);"></div>
+    <h2>INGRESSO E CAPIENZA</h2>
+  </div>
+  <div class="rules-container" style="padding-top: 64px;">
+    <div class="entrance-box" style="margin-bottom: 0;">
+      <div class="rules-box-header" style="border-bottom-color: rgba(0,0,0,0.15);">ℹ️ INFO CAPIENZA</div>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px;">
+        Il 4E20 DAY è un evento totalmente gratuito, aperto a tutti.
+      </p>
+      <p style="font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; margin-bottom: 12px;">
+        Tuttavia, per garantire la sicurezza e la qualità dell'esperienza, l'area ha una capienza massima. Una volta raggiunto il limite, l'accesso verrà temporaneamente sospeso.
+      </p>
+      <p style="font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 700; text-transform: uppercase; margin-top: 24px; padding-top: 16px; border-top: 2px dashed rgba(0,0,0,0.2);">
+        Chi prima arriva, meglio si posiziona — ti consigliamo di arrivare con anticipo per non rischiare di restare fuori.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── REGOLAMENTO ─── -->
+<section class="rules-section" id="regolamento">
+  <div class="festival-header">
+    <div class="festival-header-bar" style="background: var(--red);"></div>
+    <h2>REGOLAMENTO</h2>
+  </div>
+  <div class="rules-container" style="padding-top: 64px;">
+    <div class="rules-grid" style="margin-top: 0;">
+      <!-- PUOI -->
+      <div class="rules-box box-puoi">
+        <div class="rules-box-header">✅ PUOI</div>
+        <ul class="rules-box-list">
+          <li>Portare animali al guinzaglio</li>
+          <li>Pagare con POS</li>
+          <li>Portare liquidi max 0,5L senza tappo</li>
+        </ul>
+      </div>
+
+      <!-- NON PUOI -->
+      <div class="rules-box box-non-puoi">
+        <div class="rules-box-header">🚫 NON PUOI</div>
+        <ul class="rules-box-list">
+          <li>Armi, coltelli e oggetti da taglio o punta</li>
+          <li>Materiale infiammabile di qualsiasi tipo</li>
+          <li>Droni e veicoli a motore</li>
+          <li>Fumogeni e ombrelloni/aste</li>
+          <li>Borracce, lattine e vetro</li>
+          <li>Bombolette spray (inclusi antizanzare e deodoranti)</li>
+          <li>Accendere falò, bracieri o fuochi</li>
+          <li>Sostanze stupefacenti e veleni</li>
+          <li>Rifiuti abbandonati</li>
+          <li>Contenitori rigidi e teglie</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVIZI ─── -->
+<section class="rules-section" id="servizi">
+  <div class="festival-header">
+    <div class="festival-header-bar" style="background: var(--blue);"></div>
+    <h2>SERVIZI DISPONIBILI</h2>
+  </div>
+  <div class="rules-container" style="padding-top: 64px;">
+    <div class="services-box" style="margin-top: 0;">
+      <div class="rules-box-header">🛎️ INFO UTILI</div>
+      <p class="services-intro">All'interno dell'area festival troverai:</p>
+      <ul class="services-list">
+        <li><strong>Food & Drink</strong> — stand gastronomici e bevande per tutta la durata dell'evento</li>
+        <li><strong>Servizio POS</strong> — pagamenti elettronici accettati</li>
+        <li><strong>Servizi igienici</strong> — presenti e accessibili in area</li>
+        <li><strong>Servizio sicurezza</strong> — personale dedicato per garantire il corretto svolgimento della giornata</li>
+      </ul>
+    </div>
   </div>
 </section>
 
