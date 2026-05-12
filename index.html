@@ -310,6 +310,59 @@
 
   .cd-num.bump { transform: scale(1.08); }
 
+  /* ─── TODAY IS THE DAY ─── */
+  @keyframes titd-in {
+    0%   { opacity: 0; transform: scale(0.7) skewX(-6deg); }
+    60%  { opacity: 1; transform: scale(1.06) skewX(2deg); }
+    100% { opacity: 1; transform: scale(1) skewX(0deg); }
+  }
+  @keyframes titd-pulse {
+    0%, 100% { text-shadow: 4px 4px 0 #0A0A0A; }
+    50%      { text-shadow: 4px 4px 0 #0A0A0A, 0 0 40px rgba(255,203,5,0.8); }
+  }
+  @keyframes titd-bar {
+    0%   { width: 0; }
+    100% { width: 100%; }
+  }
+  .titd-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    animation: titd-in 0.7s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  .titd-label {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(10px, 1.2vw, 13px);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.55;
+  }
+  .titd-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 14vw, 160px);
+    line-height: 0.9;
+    color: var(--yellow);
+    letter-spacing: -2px;
+    animation: titd-pulse 2.4s ease-in-out infinite;
+    text-shadow: 4px 4px 0 #0A0A0A;
+  }
+  .titd-bar {
+    height: 5px;
+    background: var(--black);
+    animation: titd-bar 1.2s ease-out 0.4s both;
+    width: 0;
+  }
+  .titd-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(11px, 1.5vw, 16px);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.7;
+  }
+
   .cd-lbl {
     font-family: 'Space Mono', monospace;
     font-size: clamp(9px, 1vw, 12px);
@@ -1697,8 +1750,14 @@
   function tick() {
     const diff = TARGET - new Date();
     if (diff <= 0) {
-      document.getElementById('countdown').innerHTML =
-        '<p style="font-family:\'Bebas Neue\',sans-serif; font-size:48px; letter-spacing:2px;">🎉 È OGGI!</p>';
+      document.getElementById('countdown').innerHTML = `
+        <div class="titd-wrap">
+          <span class="titd-label">16 Maggio 2026 &mdash; Parco Giorcelli</span>
+          <div class="titd-bar" style="width:0"></div>
+          <div class="titd-text">Today<br>is the<br>day</div>
+          <div class="titd-bar" style="animation-delay:.6s"></div>
+          <span class="titd-sub">🎉 &nbsp; Free Entry &nbsp; · &nbsp; 14:00 &nbsp; 🎉</span>
+        </div>`;
       return;
     }
     const days  = Math.floor(diff / 86400000);
